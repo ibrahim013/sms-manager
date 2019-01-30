@@ -1,10 +1,19 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import route from '../routes/index';
+import mongoose from 'mongoose';
+
+// import route from '../routes/index';
 
 const app = express();
 const port = process.env.PORT || 8000;
 
+// db config
+const db = require('../../config/keys').mongoURI;
+
+// connect to database
+mongoose.connect(db, { useNewUrlParser: true })
+  .then(() => console.log('database connected sucessfully'))
+  .catch(err => console.log(err));
 
 //  middleware configuration
 app.use(bodyParser.urlencoded({ extended: false }));
