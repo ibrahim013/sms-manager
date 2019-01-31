@@ -40,21 +40,29 @@ class Contact {
     if (!isValid) {
       return res.status(400).json(errors);
     }
-    Contacts.findOne({ senderNumber: req.body.senderNumber })
+    Contacts.findOne({ phoneNumber: req.body.senderNumber })
       .then((senderContact) => {
         if (!senderContact) {
           res.status(400).json({ msg: 'sender number is not registered on our system', status: 'fail' });
         }
         if (senderContact) {
-          Contacts.findOne({ senderNumber: req.body.receiverNumber }).then((receiverContact) => {
+          Contacts.findOne({ phoneNumber: req.body.receiverNumber }).then((receiverContact) => {
             if (!receiverContact) {
               res.status(400).json({ msg: 'receiver number is not registered on our system', status: 'fail' });
             }
             if (receiverContact) {
               const newMessage = new Messaging({
-                sender: req.body.senderNumber,
-                receiver: req.body.receiverNumber,
-                message: receiverContact.body.message,
+                sender: {
+                  id: senderContact._id,
+                  phoneNumber: req.body.senderNumber,
+                  name: senderContact.name,
+                },
+                receiver: {
+                  id: receiverContact._id,
+                  phoneNumber: req.body.senderNumber,
+                  name: receiverContact.name,
+                },
+                message: req.body.message,
               });
               newMessage.save().then(contact => res.status(200).json(contact))
                 .then(message => res.status(200).json(message))

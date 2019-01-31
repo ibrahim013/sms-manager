@@ -3,7 +3,6 @@ import isEmpty from './is-empty';
 
 
 const validateMessage = (data) => {
-  
   const errors = {};
 
   data.senderNumber = !isEmpty(data.senderNumber) ? data.senderNumber : '';
