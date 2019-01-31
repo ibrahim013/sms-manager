@@ -72,5 +72,37 @@ class Contact {
         }
       }).catch(err => res.status(500).json({ msg: 'something went wrong', err }));
   }
+
+  /**
+   * @description GET: /api/v1/message?sender=messageId or ?receiver=messageId
+   */
+  static getSentMessages(req, res) {
+    const requestSender = req.query.sender;
+    const requestReceiver = req.query.receiver;
+    if (!(requestSender || requestReceiver)) {
+      res.status(400).json({ msg: 'unknown request' });
+    }
+    if (requestSender) {
+      Messaging.findOne({ _id: requestSender.trim() }).then((msg) => {
+        res.status(400).json({
+          sender: msg.sender.name,
+          message: msg.message,
+          date: msg.createdAt,
+          status: 'success',
+        })
+          .catch(() => (res.status(404).json({ msg: 'something went wrong', status: 'fail' })));
+      });
+    }
+    if (requestReceiver) {
+      Messaging.findOne({ _id: requestReceiver.trim() }).then((msg) => {
+        res.status(400).json({
+          receiver: msg.receiver.name,
+          message: msg.message,
+          date: msg.createdAt,
+          status: 'success',
+        });
+      }).catch(() => (res.status(404).json({ msg: 'message not found', status: 'fail' })));
+    }
+  }
 }
 export default Contact;
