@@ -27,8 +27,10 @@ const MessagingSchema = new Schema({
       type: String,
     },
   },
+  message: {
+    type: String,
+  },
   createdAt: { type: Date, default: Date.now },
-  updatedAt: { type: Date, default: Date.now },
 });
 
 export default model('Messaging', MessagingSchema);
