@@ -110,7 +110,7 @@ class Contact {
   }
 
   /**
-   * Routes: GET: /api/v1/contacts?contact=phoneNumber
+   * Routes: GET: /api/v1/contact?contact=phoneNumber
    * @description This method gets a users contact
    * @param {object} req
    * @param {object} res

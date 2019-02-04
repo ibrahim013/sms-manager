@@ -15,7 +15,7 @@ const validateContact = (data) => {
     errors.name = 'name can not be empty';
   }
   if (!Validator.isLength(data.phoneNumber, { min: 11, max: 11 })) {
-    errors.phoneNumber = 'enter a valid phone numeber';
+    errors.phoneNumber = 'enter a valid phone number';
   }
   if (Validator.isEmpty(data.phoneNumber)) {
     errors.phoneNumber = 'phone number can not be empty';
