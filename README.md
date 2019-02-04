@@ -13,7 +13,7 @@ SMS management application API is a simple app to manage short message service w
 |/api/v1/message?sender=messageId| GET | view message sent |
 |/api/v1/message?receiver=messageId| GET | view message received |
 |/api/v1/contacts/:phoneNumber| DEL | Delete contact |
-| /api/v1/message/:messageId/contacts/:contactId/DEL/ Delete masage by id
+| /api/v1/message/:messageId/contacts/:contactId | DEL | Delete masage by id
 
 ### API Documentation
 [API Documentation](https://documenter.getpostman.com/view/4905727/RztoKSgD)
