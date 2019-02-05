@@ -21,9 +21,9 @@ SMS management application API is a simple app to manage short message service w
 
 ### Technologies
 The src directory houses the implementation using
-Node
-Express
-MongoDb
+* Node
+* Express
+* MongoDb
 
 ### Get Started
 * Clone this repository from a terminal git clone https://github.com/ibrahim013/sms-manager.git
