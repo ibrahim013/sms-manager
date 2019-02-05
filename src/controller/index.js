@@ -169,6 +169,7 @@ class Contact {
    */
   static deleteMessage(req, res) {
     const messageId = req.params.messageId.trim();
+    console.log(messageId, "this is a an id")
     const contactId = req.params.contactId.trim();
     if (!(req.params.messageId || req.params.contactId)) {
       return res.status(401).json({
@@ -184,7 +185,7 @@ class Contact {
             status: 'fail',
           });
         }
-        Mesaging.remove({ _id: messageId })
+        Messaging.remove({ _id: messageId })
           .then(() => res.status(202).send({
             status: true,
             msg: 'Message deleted successfully',
