@@ -184,7 +184,7 @@ class Contact {
             status: 'fail',
           });
         }
-        Mesaging.remove({ _id: messageId })
+        Messaging.remove({ _id: messageId })
           .then(() => res.status(202).send({
             status: true,
             msg: 'Message deleted successfully',
